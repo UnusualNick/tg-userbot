@@ -13,6 +13,6 @@ wheels/
 .env
 my_account.session
 my_account.session-journal
-bad_topics.json
+spammy_topics.json
 unknown_errors.txt
 

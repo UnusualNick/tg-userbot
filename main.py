@@ -31,7 +31,7 @@ def main():
 def workload(app: Client):
     async def run_bot():
         async with app:
-            await clean_topics(app)
+            # await clean_topics(app)
             Logger.log("Userbot started and waiting for updates...", Logger.LogLevel.INFO)
             await idle()
 

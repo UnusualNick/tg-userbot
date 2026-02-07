@@ -10,23 +10,23 @@ from logger import Logger
 async def clean_topics(app: Client):
     Logger.log("Starting topic cleaner...")
 
-    # Load bad topics
-    if not os.path.exists("bad_topics.json"):
-        Logger.log("bad_topics.json not found.", Logger.LogLevel.WARNING)
+    # Load spammy topics
+    if not os.path.exists("spammy_topics.json"):
+        Logger.log("spammy_topics.json not found.", Logger.LogLevel.WARNING)
         return
 
-    with open("bad_topics.json", "r") as f:
+    with open("spammy_topics.json", "r") as f:
         try:
-            bad_topics_config = json.load(f)
+            spammy_topics_config = json.load(f)
         except json.JSONDecodeError:
-            Logger.log("Invalid JSON in bad_topics.json", Logger.LogLevel.ERROR)
+            Logger.log("Invalid JSON in spammy_topics.json", Logger.LogLevel.ERROR)
             return
 
     # No need for 'with app:' block here if we run this via app.run(clean_topics(app))
     # as app.run() handles the context.
     # However, if we pass the coroutine to app.run(), app.run() will start it.
     
-    for chat_id_str, topic_ids in bad_topics_config.items():
+    for chat_id_str, topic_ids in spammy_topics_config.items():
         try:
             chat_id = int(chat_id_str)
         except ValueError:
