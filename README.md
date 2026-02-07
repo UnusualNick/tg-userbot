@@ -57,6 +57,7 @@ This method requires zero local Python setup.
     The bot stores sessions and config in a `data/` directory. Create it:
     ```bash
     mkdir -p data
+    echo "{}" > data/spammy_topics.json
     ```
 
     *If you already have a `my_account.session` from another client, place it in the `data/` folder.*
