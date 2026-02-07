@@ -1,0 +1,8 @@
+__pycache__
+.venv
+.git
+.env
+*.session
+spammy_topics.json
+# Keep the example config
+!spammy_topics.json.example

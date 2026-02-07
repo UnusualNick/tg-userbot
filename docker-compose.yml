@@ -1,0 +1,12 @@
+services:
+  userbot:
+    build: .
+    container_name: topic-silencer
+    restart: unless-stopped
+    volumes:
+      - ./.env:/app/.env
+      - ./my_account.session:/app/my_account.session
+      - ./spammy_topics.json:/app/spammy_topics.json
+    # Keep TTY open for logs and potential interaction
+    tty: true
+    stdin_open: true
