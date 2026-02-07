@@ -59,18 +59,16 @@ async def clean_topics(app: Client):
             for topic in topics_result.topics:
                 if isinstance(topic, ForumTopic):
                     if topic.id in topic_ids:
-                        Logger.log(f"Found bad topic {topic.id} ({topic.title})", Logger.LogLevel.DEBUG)
-                        if topic.unread_count > 0:
-                            Logger.log(f"  Marking as read (unread: {topic.unread_count})")
-                            await app.invoke(
-                                ReadDiscussion(
-                                    peer=peer,
-                                    msg_id=topic.id,
-                                    read_max_id=topic.top_message
-                                )
+                        Logger.log(f"Found spammy topic {topic.id} ({topic.title}) - Force clearing...")
+                        # Blind fire: Clearing regardless of unread_count to ensure sync
+                        await app.invoke(
+                            ReadDiscussion(
+                                peer=peer,
+                                msg_id=topic.id,
+                                read_max_id=topic.top_message
                             )
-                        else:
-                            Logger.log("  Already read.", Logger.LogLevel.DEBUG)
+                        )
+                        Logger.log(f"  Cleared {topic.title}")
 
         except Exception as e:
             Logger.log(f"Error processing chat {chat_id}: {e}", Logger.LogLevel.ERROR)
