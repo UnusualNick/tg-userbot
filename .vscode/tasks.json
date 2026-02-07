@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Executable",
+      "type": "shell",
+      "command": "uv run pyinstaller --onefile --name tg-userbot main.py",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Cleaner",
+      "type": "shell",
+      "command": "uv run python main.py --clean-topics",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
