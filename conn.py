@@ -7,4 +7,4 @@ class Connection:
         self.api_id = api_id
 
     def connect(self):
-        return Client("my_account", api_id=self.api_id, api_hash=self.api_hash)
+        return Client("data/my_account", api_id=self.api_id, api_hash=self.api_hash)

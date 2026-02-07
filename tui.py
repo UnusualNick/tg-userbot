@@ -10,7 +10,7 @@ async def configure_tui(app: Client):
     Logger.log("Starting configuration TUI...")
 
     # Load existing config
-    config_file = "spammy_topics.json"
+    config_file = "data/spammy_topics.json"
     if os.path.exists(config_file):
         with open(config_file, "r") as f:
             try:

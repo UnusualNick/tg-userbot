@@ -4,5 +4,6 @@ __pycache__
 .env
 *.session
 spammy_topics.json
+data/
 # Keep the example config
 !spammy_topics.json.example

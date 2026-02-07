@@ -11,11 +11,11 @@ async def clean_topics(app: Client):
     Logger.log("Starting topic cleaner...")
 
     # Load spammy topics
-    if not os.path.exists("spammy_topics.json"):
+    if not os.path.exists("data/spammy_topics.json"):
         Logger.log("spammy_topics.json not found.", Logger.LogLevel.WARNING)
         return
 
-    with open("spammy_topics.json", "r") as f:
+    with open("data/spammy_topics.json", "r") as f:
         try:
             spammy_topics_config = json.load(f)
         except json.JSONDecodeError:

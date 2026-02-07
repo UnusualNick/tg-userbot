@@ -28,7 +28,7 @@ async def handleUnreads(client: Client, message: Message):
         return
 
     # Check config FIRST before deciding to return
-    config_file = "spammy_topics.json"
+    config_file = "data/spammy_topics.json"
     if not os.path.exists(config_file):
         return
 

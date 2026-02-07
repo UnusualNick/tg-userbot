@@ -44,6 +44,11 @@ def init():
     from conn import Connection
 
     load_dotenv()
+    
+    # Ensure data directory exists
+    if not os.path.exists("data"):
+        os.makedirs("data")
+
     api_hash = os.getenv("API_HASH") or "API_HASH not found in .env file"
     api_id = int(os.getenv("API_ID") or "API_ID not found in .env file")
     conn = Connection(api_hash, api_id)
