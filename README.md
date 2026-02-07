@@ -53,22 +53,23 @@ This method requires zero local Python setup.
     # Edit .env and add your API_ID and API_HASH
     ```
 
-3.  **Prepare Session and Config Files:**
-    Docker will create directories if these files don't exist, which will break the bot. Create empty files first:
+3.  **Prepare Persistent Storage:**
+    The bot stores sessions and config in a `data/` directory. Create it:
     ```bash
-    touch my_account.session
-    echo "{}" > spammy_topics.json
+    mkdir -p data
     ```
 
+    *If you already have a `my_account.session` from another client, place it in the `data/` folder.*
+
 4.  **First Run (Authentication):**
-    Run interactively once to login to Telegram:
+    You need to log in to generate the session file. Run the container interactively:
     ```bash
     docker compose run --rm userbot
     ```
-    *Follow the prompts (enter phone number, code, 2FA password).*
+    *Follow the prompts (enter phone number, code, 2FA password). This will create `data/my_account.session`.*
 
 5.  **Start Background Service:**
-    Once authenticated, start the bot in the background:
+    Once authenticated, start the main service:
     ```bash
     docker compose up -d
     ```
@@ -82,11 +83,16 @@ This method requires zero local Python setup.
 
 2.  **Setup Environment:**
     Create `.env` and fill in your keys (same as above).
+    Ensure the data directory exists:
+    ```bash
+    mkdir -p data
+    ```
 
-3.  **Run:**
+3.  **Run (and Authenticate):**
     ```bash
     uv run python main.py
     ```
+    On the first run, it will ask for your phone number and login code. The session will be saved to `data/my_account.session`.
 
 ## Usage
 
